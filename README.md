@@ -46,23 +46,29 @@ The objective of this project is to verify the functionality and performance of 
    npm install -g newman
    ```
 
-2. Run the Postman collection with Newman:
+2. Install Newman HTML Reporter:
    
    ```bash
-   npx newman run Postman/collection.json -r html --reporter-html-export reports/postman_test_report.html
+   npm install newman-reporter-html --legacy-peer-deps
+   ```
+
+3. Run the Postman collection with Newman:
+   
+   ```bash
+   npx newman run Project3-APITesting/postman/collection.json -r html --reporter-html-export Project3-APITesting/reports/postman_test_report.html
    ```
 
 ### JMeter
 
 1. **Install Apache JMeter from [here](https://jmeter.apache.org/download_jmeter.cgi).**
 
-2. **Open JMeter and load the test plan file (e.g., `test_plan.jmx`).**
+2. **Open JMeter and load the test plan file located at Project3-APITesting/jmeter/test_plan.jmx.**
 
 3. **Run the test plan.**
 
 ## Test Reports
 
 - [Postman Test Report](reports/postman_test_report.html)
-- [JMeter Test Report](reports/jmeter_test_report.html)
+- [JMeter Test Report](jmeter/results/jmeter_test_report.csv)
 
 ## Screenshots
