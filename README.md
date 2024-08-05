@@ -52,7 +52,7 @@ The objective of this project is to verify the functionality and performance of 
    npx newman run Postman/collection.json -r html --reporter-html-export reports/postman_test_report.html
    ```
 
-   ### JMeter
+### JMeter
 
 1. **Install Apache JMeter from [here](https://jmeter.apache.org/download_jmeter.cgi).**
 
