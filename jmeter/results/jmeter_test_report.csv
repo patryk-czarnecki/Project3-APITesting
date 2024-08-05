@@ -1,42 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
-  <hashTree>
-    <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
-      <boolProp name="ResultCollector.error_logging">false</boolProp>
-      <objProp>
-        <name>saveConfig</name>
-        <value class="SampleSaveConfiguration">
-          <time>true</time>
-          <latency>true</latency>
-          <timestamp>true</timestamp>
-          <success>true</success>
-          <label>true</label>
-          <code>true</code>
-          <message>true</message>
-          <threadName>true</threadName>
-          <dataType>true</dataType>
-          <encoding>false</encoding>
-          <assertions>true</assertions>
-          <subresults>true</subresults>
-          <responseData>false</responseData>
-          <samplerData>false</samplerData>
-          <xml>false</xml>
-          <fieldNames>true</fieldNames>
-          <responseHeaders>false</responseHeaders>
-          <requestHeaders>false</requestHeaders>
-          <responseDataOnError>false</responseDataOnError>
-          <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-          <assertionsResultsToSave>0</assertionsResultsToSave>
-          <bytes>true</bytes>
-          <sentBytes>true</sentBytes>
-          <url>true</url>
-          <threadCounts>true</threadCounts>
-          <idleTime>true</idleTime>
-          <connectTime>true</connectTime>
-        </value>
-      </objProp>
-      <stringProp name="filename"></stringProp>
-    </ResultCollector>
-    <hashTree/>
-  </hashTree>
-</jmeterTestPlan>
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+GET Posts,1,64,64,64,0.00,0.000%,15.62500,437.12,2.06,28647.0
+GET Post by ID,1,31,31,31,0.00,0.000%,32.25806,44.29,4.32,1406.0
+POST Post,1,326,326,326,0.00,0.000%,3.06748,3.65,0.78,1220.0
+PUT Post,1,311,311,311,0.00,0.000%,3.21543,3.44,0.86,1095.0
+DELETE Post,1,303,303,303,0.00,0.000%,3.30033,3.49,0.72,1083.0
+TOTAL,5,207,31,326,130.86,0.000%,4.82160,31.50,0.97,6690.2
