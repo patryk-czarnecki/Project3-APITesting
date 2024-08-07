@@ -19,23 +19,10 @@ pipeline {
                 sh 'npm test'
             }
         }
-
-        stage('Run JMeter Tests') {
+        
+        stage('Archive Results and Documentation') {
             steps {
-                sh '/home/patryk-czarnecki/Pulpit/apache-jmeter-5.6.3/bin/jmeter -n -t jmeter/test_plan.jmx -l reports/jmeter_test_report.jtl'
-            }
-        }
-
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: 'reports/*.html'
-                archiveArtifacts artifacts: 'reports/jmeter_test_report.jtl'
-            }
-        }
-
-        stage('Publish Performance Report') {
-            steps {
-                perfReport filterRegex: '', sourceDataFiles: 'reports/jmeter_test_report.jtl'
+                archiveArtifacts artifacts: 'reports/*.html'                
             }
         }
     }
@@ -49,7 +36,7 @@ pipeline {
                 reportDir: 'reports',
                 reportFiles: 'postman_test_report.html',
                 reportName: 'Postman Test Report'
-            ])
+            ])            
         }
     }
 }

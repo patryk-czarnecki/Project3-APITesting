@@ -1,7 +1,7 @@
-# Project 3: API Testing with Postman and JMeter
+# Project 3: API Testing with Postman, Newman, JMeter, and Jenkins
 
 ## Description
-This project involves testing the JSONPlaceholder API using Postman and JMeter. The tests focus on various HTTP methods and validating the responses as well as performance testing.
+This project involves testing the JSONPlaceholder API using Postman, Newman, JMeter, and Jenkins. The tests focus on various HTTP methods and validating the responses as well as performance testing.
 
 ## Test Plan
 
@@ -18,12 +18,109 @@ The objective of this project is to verify the functionality and performance of 
 
 ### Testing Environment
 
-- **Tool**: Postman, JMeter
+- **Tools**: Postman, Newman, JMeter, Jenkins
 
 ### Types of Tests
 
 1. **Functional Tests**: To verify that each endpoint works according to the requirements.
 2. **Performance Tests**: To evaluate the performance and scalability of the API.
+
+### Detailed Test Cases
+
+#### GET /posts
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+pm.test("Response has JSON body", function () {
+    pm.response.to.be.json;
+});
+
+pm.test("Response contains posts", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.be.an('array').that.is.not.empty;
+});
+```
+   
+#### POST /posts
+```javascript
+pm.test("Status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+pm.test("Response has JSON body", function () {
+    pm.response.to.be.json;
+});
+
+pm.test("Response contains created post", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('id');
+    pm.expect(jsonData).to.have.property('title', pm.environment.get("postTitle"));
+    pm.expect(jsonData).to.have.property('body', pm.environment.get("postBody"));
+    pm.expect(jsonData).to.have.property('userId', parseInt(pm.environment.get("userId")));
+});
+```
+
+#### GET /posts/1
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+pm.test("Response has JSON body", function () {
+    pm.response.to.be.json;
+});
+```
+
+#### PUT /posts/1
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+pm.test("Response has JSON body", function () {
+    pm.response.to.be.json;
+});
+```
+
+#### DELETE /posts/1
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+pm.test("Response body is empty JSON object", function () {
+    pm.expect(pm.response.json()).to.eql({});
+});
+```
+
+## How to Clone the Repository
+
+### Clone the repository:
+```Bash
+git clone https://github.com/yourusername/Project3-APITesting.git
+```
 
 ## How to Run Tests Locally
 
@@ -31,44 +128,65 @@ The objective of this project is to verify the functionality and performance of 
 
 1. Install Postman from [here](https://www.postman.com/downloads/).
 
-2. Import the Postman collection:
+2. Import the Postman collection and environment:
 
    - Open Postman.
    - Click on "Import" and select the exported Postman collection file (e.g., `Postman/collection.json`).
+   - Click on "Import" again and select the environment file (e.g., `Postman/environment.json`).
 
 3. Run the collection in Postman.
 
 ### Newman
 
-1. Install Newman:
+#### Install Newman and dependencies:
+```Bash
+npm install --legacy-peer-deps
+```
 
-   ```bash
-   npm install -g newman
-   ```
+#### Run the Postman collection with Newman:
+```Bash
+npm test
+```
 
-2. Install Newman HTML Reporter:
-   
-   ```bash
-   npm install newman-reporter-html --legacy-peer-deps
-   ```
+### View the report:
 
-3. Run the Postman collection with Newman:
-   
-   ```bash
-   npx newman run Project3-APITesting/postman/collection.json -r html --reporter-html-export Project3-APITesting/reports/postman_test_report.html
-   ```
+After running the tests with Newman, an HTML report will be generated in the `reports` directory.
+Open `reports/postman_test_report.html` in a browser to view the test results.
 
 ### JMeter
 
-1. **Install Apache JMeter from [here](https://jmeter.apache.org/download_jmeter.cgi).**
+1. Install Apache JMeter from [here](https://jmeter.apache.org/download_jmeter.cgi).
 
-2. **Open JMeter and load the test plan file located at Project3-APITesting/jmeter/test_plan.jmx.**
+2. Open JMeter and load the test plan file:
 
-3. **Run the test plan.**
+   - Launch JMeter.
+   - Click on `File > Open`.
+   - Navigate to `jmeter/test_plan.jmx` and open it.
+
+3. Run the test plan by clicking on the green "Start" button.
+
+### How to Run Tests in Jenkins
+
+1. Ensure Jenkins is installed and running.
+
+2. Create a new Jenkins job:
+
+   - Go to Jenkins and create a new "Pipeline" job.
+   - Configure the job to use the GitHub repository where this project is hosted.
+
+3. Run the pipeline:
+
+   - Manually trigger the job or configure a webhook to automatically trigger it after each push.
+
+4. View the report:
+
+   - After the pipeline completes, go to the "Postman Test Report" tab in Jenkins to see the test results.
 
 ## Test Reports
 
-- [Postman Test Report](reports/postman_test_report.html)
-- [JMeter Test Report](jmeter/results/jmeter_test_report.csv)
+- **Postman Test Report**: `reports/postman_test_report.html`
+- **JMeter Test Report**: `jmeter/results/jmeter_test_report.csv`
 
-## Screenshots
+## Conclusion
+This project demonstrates how to automate API testing and monitor API performance using Postman, JMeter, and Jenkins. Automating API tests allows for quick and efficient detection of errors and ensures the stability and performance of the tested API.
+
