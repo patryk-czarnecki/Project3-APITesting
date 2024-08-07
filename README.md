@@ -148,7 +148,7 @@ npm install --legacy-peer-deps
 npm test
 ```
 
-### View the report:
+#### View the report:
 
 After running the tests with Newman, an HTML report will be generated in the `reports` directory.
 Open `reports/postman_test_report.html` in a browser to view the test results.
@@ -184,8 +184,8 @@ Open `reports/postman_test_report.html` in a browser to view the test results.
 
 ## Test Reports
 
-- **Postman Test Report**: `reports/postman_test_report.html`
-- **JMeter Test Report**: `jmeter/results/jmeter_test_report.csv`
+- **[Postman Test Report](./reports/postman_test_report.html)**
+- **[JMeter Test Report](./jmeter/results/jmeter_test_report.csv)**
 
 ## Conclusion
 This project demonstrates how to automate API testing and monitor API performance using Postman, JMeter, and Jenkins. Automating API tests allows for quick and efficient detection of errors and ensures the stability and performance of the tested API.
