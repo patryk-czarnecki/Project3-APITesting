@@ -165,6 +165,52 @@ Open `reports/postman_test_report.html` in a browser to view the test results.
 
 3. Run the test plan by clicking on the green "Start" button.
 
+### Jenkinsfile Configuration
+```javascript
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/patryk-czarnecki/Project3-APITesting.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install --legacy-peer-deps'
+            }
+        }
+
+        stage('Run Postman Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
+        
+        stage('Archive Results and Documentation') {
+            steps {
+                archiveArtifacts artifacts: 'reports/*.html'                
+            }
+        }
+    }
+
+    post {
+        always {
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'reports',
+                reportFiles: 'postman_test_report.html',
+                reportName: 'Postman Test Report'
+            ])            
+        }
+    }
+}
+```
+
 ### How to Run Tests in Jenkins
 
 1. Ensure Jenkins is installed and running.
@@ -176,7 +222,7 @@ Open `reports/postman_test_report.html` in a browser to view the test results.
 
 3. Run the pipeline:
 
-   - Manually trigger the job or configure a webhook to automatically trigger it after each push.
+   - Manually trigger the job.
 
 4. View the report:
 
