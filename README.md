@@ -220,7 +220,7 @@ pipeline {
 1. **Download and run the Jenkins container:**
    ```bash
    docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
-  ```
+   
 
 2. **Obtain the initial admin password:**
    ```bash
@@ -248,7 +248,7 @@ Go to [http://localhost:8080](http://localhost:8080) and log in with the admin a
 
 ### How to Run Tests in Jenkins
 
-1. Ensure Jenkins is installed and running.
+1. **Ensure Jenkins is installed and running.**
 
 2. **Create a New Pipeline Job:**
    - Go to Jenkins Dashboard.
@@ -258,7 +258,7 @@ Go to [http://localhost:8080](http://localhost:8080) and log in with the admin a
    - In the job configuration page, scroll down to the `Pipeline` section.
    - Choose `Pipeline script from SCM` in the `Definition` dropdown.
    - Select `Git` in the `SCM` dropdown.
-   - - In the `Repository URL` field, enter the URL of the GitHub repository: `https://github.com/patryk-czarnecki/Project3-APITesting.git`.
+   - In the `Repository URL` field, enter the URL of the GitHub repository: `https://github.com/patryk-czarnecki/Project3-APITesting.git`.
    - Specify the branch to build: `main`.
 
 4. **Save and Run the Job:**
