@@ -225,8 +225,7 @@ pipeline {
 2. **Obtain the initial admin password:**
    ```bash
    docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-  ```
-
+  
 3. **Open a browser and go to http://localhost:8080. Enter the initial admin password, install suggested plugins, and create an admin account.**
 
 #### Installing the NodeJS Plugin in Jenkins
