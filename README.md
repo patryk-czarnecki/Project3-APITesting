@@ -136,8 +136,11 @@ git clone https://github.com/patryk-czarnecki/Project3-APITesting.git
 
 3. Run the collection in Postman.
 
-### Install Node.js
-If you do not have Node.js installed, download and install it from [here](https://nodejs.org/).
+## Prerequisites
+
+### Install Node.js and npm
+
+If you do not have Node.js and npm installed, download and install them from [here](https://nodejs.org/).
 
 ### Newman
 
